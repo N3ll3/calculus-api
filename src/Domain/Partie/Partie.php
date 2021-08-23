@@ -14,26 +14,27 @@ final class Partie extends EventSourcedAggregateRoot
 {
 
     
-    private int $partieId; // aggregate root id
+    private partieId $partieId; // aggregate root id
 
-    private $typePartie;
+    private PartieType $typePartie;
 
-    private int $nombreOperation;
+    private PartieNombreOperation $nombreOperation;
 
-    private  $tempsImparti;
+    private PartieTempsImparti $tempsImparti;
 
-    private $creeeLe;
+    private DateTimeImmutable $creeeLe;
  
  
-    public static function creerPartie($unPartieId, PartieType $unType, PartieNombreOperation $unNombreOperation, PartieTempsImparti $unTempsImparti){
+    public static function creerPartie(partieId $unPartieId, PartieType $unType, PartieNombreOperation $unNombreOperation, PartieTempsImparti $unTempsImparti){
+        
         $nouvellePartie = new Self($unPartieId, $unType, $unNombreOperation, $unTempsImparti, new DateTimeImmutable());
 
         //creer event
-        $nouvellePartie-> apply(new PartieCreee($nouvellePartie->partieId, 
+        $nouvellePartie-> apply(new PartieCreee($nouvellePartie->partieId->value(), 
                                                 $unType->value(), 
                                                 $unNombreOperation->value(), 
                                                 $unTempsImparti->value(),
-                                                $nouvellePartie->creeeLe));
+                                                $nouvellePartie->creeeLe->format('d-m-Y')));
         
         return $nouvellePartie;
         
@@ -43,31 +44,31 @@ final class Partie extends EventSourcedAggregateRoot
     
 
     public function typePartie(){
-        return $this->typePartie;
+        return $this->typePartie->value();
     }
 
     public function nombreOperation(){
-        return $this->nombreOperation;
+        return $this->nombreOperation->value();
     }
 
     public function tempsImparti(){
-        return $this->tempsImparti;
+        return $this->tempsImparti->value();
     }
 
     public function creeeLe(){
-        return $this->creeeLe;
+        return $this->creeeLe->format('d-m-Y');
     }
 
     public function applyPartieCreee(PartieCreee $event)
     {
-        $this->partieId = $event->partieId;
+        $this->partieId = $event->partieId->value();
 
     }
 
 
     public function getAggregateRootId()
     {
-        return $this->partieId;
+        return $this->partieId->value();
     }
 
    

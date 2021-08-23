@@ -25,19 +25,4 @@ class PartieCreee
         $this->creeeLe = $creeeLe;
     }
 
-    public function typePartie(){
-        return $this->typePartie;
-    }
-
-    public function nombreOperation(){
-        return $this->nombreOperation;
-    }
-
-    public function tempsImparti(){
-        return $this->tempsImparti;
-    }
-
-    public function creeeLe(){
-        return $this->creeeLe;
-    }
 }

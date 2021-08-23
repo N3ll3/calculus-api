@@ -3,7 +3,7 @@
 namespace App\Domain\Operations;
 
 use ErrorException;
-use Slim\Error\Renderers\JsonErrorRenderer;
+
 
 class Operateur 
 {
@@ -15,7 +15,7 @@ class Operateur
     public function __construct(string $operateur){
 
         if (!in_array ($operateur, $this->allowedOperators)){
-            throw new JsonErrorRenderer(new ErrorException('Opérateur demandé non valide'));
+            throw new ErrorException('Opérateur demandé non valide');
         }
         
         $this->operateur = $operateur;
