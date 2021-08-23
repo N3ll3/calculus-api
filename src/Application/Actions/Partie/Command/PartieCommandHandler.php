@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Domain\Partie;
+namespace App\Actions\Partie\Command;
 
+use App\Domain\Partie\Partie;
 use Broadway\CommandHandling\SimpleCommandHandler as BroadwayCommandHandler;
 
 class PartieCommandHandler extends BroadwayCommandHandler

@@ -8,9 +8,9 @@ use Broadway\EventSourcing\EventSourcedAggregateRoot as EventSourcedAggregateRoo
 use DateTimeImmutable;
 
 use App\Domain\Partie\PartieCreee;
-use PartieCreateur;
 
-class Partie extends EventSourcedAggregateRoot
+
+final class Partie extends EventSourcedAggregateRoot
 {
 
     
@@ -23,33 +23,24 @@ class Partie extends EventSourcedAggregateRoot
     private  $tempsImparti;
 
     private $creeeLe;
-
-
-
  
-    public function creerPartie($unPartieId,$unPartieCreateurId, $unType, $unNombreOperation, $unTempsImparti){
-        $nouvellePartie = new Self();
+ 
+    public static function creerPartie($unPartieId, PartieType $unType, PartieNombreOperation $unNombreOperation, PartieTempsImparti $unTempsImparti){
+        $nouvellePartie = new Self($unPartieId, $unType, $unNombreOperation, $unTempsImparti, new DateTimeImmutable());
 
         //creer event
-        $nouvellePartie-> apply(new PartieCreee($unPartieId,$unPartieCreateurId, $unType, $unNombreOperation, $unTempsImparti, new DateTimeImmutable()));
+        $nouvellePartie-> apply(new PartieCreee($nouvellePartie->partieId, 
+                                                $unType->value(), 
+                                                $unNombreOperation->value(), 
+                                                $unTempsImparti->value(),
+                                                $nouvellePartie->creeeLe));
         
         return $nouvellePartie;
         
     }
 
 
-
-    public function applyPartieCreee(PartieCreee $event)
-    {
-        $this->partieId = $event->partieId;
-
-    }
-
-
-    public function getAggregateRootId()
-    {
-        return $this->partieId;
-    }
+    
 
     public function typePartie(){
         return $this->typePartie;
@@ -66,4 +57,18 @@ class Partie extends EventSourcedAggregateRoot
     public function creeeLe(){
         return $this->creeeLe;
     }
+
+    public function applyPartieCreee(PartieCreee $event)
+    {
+        $this->partieId = $event->partieId;
+
+    }
+
+
+    public function getAggregateRootId()
+    {
+        return $this->partieId;
+    }
+
+   
 }
