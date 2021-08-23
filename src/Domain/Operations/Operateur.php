@@ -22,7 +22,7 @@ class Operateur
         
     }
     
-    public function getOperateur() {
+    public function Operateur() {
         return $this->operateur;
     }
         

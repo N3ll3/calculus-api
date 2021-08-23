@@ -7,7 +7,7 @@ use Broadway\EventSourcing\EventSourcedAggregateRoot as EventSourcedAggregateRoo
 
 use DateTimeImmutable;
 
-use App\Domain\Partie\PartieEstCreee;
+use App\Domain\Partie\PartieCreee;
 use PartieCreateur;
 
 class Partie extends EventSourcedAggregateRoot
@@ -24,7 +24,6 @@ class Partie extends EventSourcedAggregateRoot
 
     private $creeeLe;
 
-    private $partieCreateur;
 
 
  
@@ -32,7 +31,7 @@ class Partie extends EventSourcedAggregateRoot
         $nouvellePartie = new Self();
 
         //creer event
-        $nouvellePartie-> apply(new PartieEstCreee($unPartieId,$unPartieCreateurId, $unType, $unNombreOperation, $unTempsImparti, new DateTimeImmutable()));
+        $nouvellePartie-> apply(new PartieCreee($unPartieId,$unPartieCreateurId, $unType, $unNombreOperation, $unTempsImparti, new DateTimeImmutable()));
         
         return $nouvellePartie;
         
@@ -40,21 +39,10 @@ class Partie extends EventSourcedAggregateRoot
 
 
 
-    public function applyPartieEstCreee(PartieEstCreee $event)
+    public function applyPartieCreee(PartieCreee $event)
     {
         $this->partieId = $event->partieId;
 
-        // We create the entity in our event handler so that it will be createvent       // when the aggregate root is reconstituted from an event stream. Once
-        // the child entity is instantiated and returned by getChildEntities()
-        // it can emit and apply events itself.
-        $this->partieCreateur = new PartieCreateur(
-            $event->partieId,
-            $event->partieCreateurId,
-            $event->nombreOperation,
-            $event->tempsImparti,
-            $event->creeeLe,
-            $event->partieId
-        );
     }
 
 
