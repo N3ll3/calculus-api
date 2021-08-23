@@ -3,35 +3,36 @@
 namespace App\Domain\Partie;
 
 
-use Broadway\EventSourcing\EventSourcedAggregateRoot;
+use Broadway\EventSourcing\EventSourcedAggregateRoot as EventSourcedAggregateRoot;
+use DateTime;
+use TypePartie;
 
-class Partie extends Broadway\EventSourcing\EventSourcedAggregateRoot
+use function PHPSTORM_META\type;
+
+class Partie extends EventSourcedAggregateRoot
 {
 
-    private $partieId;
+    
+    private int $partieId; // aggregate root id
 
-     // event Handler
-    private $partieCreateur;
+    private $typePartie;
 
+    private int $nombreOperation;
 
-    public static function creerPartie ($partieId, $partieCreationId) {
-        $partie =  new Self();
+    private  $tempsImparti;
 
-        $partie->apply(new PartieEstCreeeEvent($partieId, $partieCreationId));
+    private $creeeLe;
 
-        return $partie;
+    private function __construct(int $partieId, TypePartie $typePartie, int $nombreOperation, DateTime $tempsImparti, DateTime $creeeLe)
+    {
+        $this->partieId = $partieId;
+        $this->typePartie = $typePartie;
+        $this->nombreOperation = $nombreOperation;
+        $this->tempsImparti = $tempsImparti;
+        $this->creeeLe = $creeeLe;
     }
 
+    
 
-    public function getAggregateRootId() {
-        return $this->partieId;
-    }
-
-   
-    public function applyPartieEstcreeeEvent(PartieEstCreeeEvent $event) {
-        $this->partieId = $event->partieId;
-
-        $this->partieCreateur = new PartieCreateur()
-    }
 
 }
