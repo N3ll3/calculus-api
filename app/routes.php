@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+use App\Actions\Partie\Command\PartieCommandHandler;
 use App\Application\Actions\User\ListUsersAction;
 use App\Application\Actions\User\ViewUserAction;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -25,9 +26,13 @@ return function (App $app) {
     });
 
 
-    $app->group('/partie', function (Group $group){
-        $group->post('creer',)
-    })
+    $app->post('/partie', function (Request $request, Response $response){
+        $partie = $request->getParsedBody();
+     
+      $response->getBody()->write(json_encode($partie));
+      return $response->withHeader('Content-Type', 'application/json');
+    });
+        
 
     $app->get('/db-test', function(Request $request, Response $response){
         $db = $this->get(PDO::class);
