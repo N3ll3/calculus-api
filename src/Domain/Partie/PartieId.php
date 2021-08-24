@@ -6,7 +6,7 @@ use Ramsey\Uuid\Uuid;
 
 class partieId
 {
-    private $id;
+    private string $id;
 
     public function __construct($id=null)
     {

@@ -23,4 +23,21 @@ return function (App $app) {
         $group->get('', ListUsersAction::class);
         $group->get('/{id}', ViewUserAction::class);
     });
+
+
+    // $app->group('/partie', function (Group $group){
+    //     $group->post('creer',)
+    // })
+
+    $app->get('/db-test', function(Request $request, Response $response){
+        $db = $this->get(PDO::class);
+        $sth = $db->prepare("SELECT * FROM partie");
+        $sth->execute();
+        $data = $sth->fetchAll(PDO::FETCH_ASSOC);
+        $payload = json_encode($data);
+        $response->getBody()->write($payload);
+
+        return $response->withHeader('Content-Type', 'application/json');
+    });
+
 };

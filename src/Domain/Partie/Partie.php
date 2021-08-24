@@ -41,7 +41,6 @@ final class Partie extends EventSourcedAggregateRoot
     }
 
 
-    
 
     public function typePartie(){
         return $this->typePartie->value();
@@ -66,7 +65,7 @@ final class Partie extends EventSourcedAggregateRoot
     }
 
 
-    public function getAggregateRootId()
+    public function getAggregateRootId():string
     {
         return $this->partieId->value();
     }
