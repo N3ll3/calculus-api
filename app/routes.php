@@ -25,9 +25,9 @@ return function (App $app) {
     });
 
 
-    // $app->group('/partie', function (Group $group){
-    //     $group->post('creer',)
-    // })
+    $app->group('/partie', function (Group $group){
+        $group->post('creer',)
+    })
 
     $app->get('/db-test', function(Request $request, Response $response){
         $db = $this->get(PDO::class);
