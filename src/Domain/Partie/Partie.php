@@ -20,21 +20,17 @@ final class Partie extends EventSourcedAggregateRoot
 
     private PartieNombreOperation $nombreOperation;
 
-    private PartieTempsImparti $tempsImparti;
-
     private DateTimeImmutable $creeeLe;
  
  
-    public static function creerPartie(partieId $unPartieId, PartieType $unType, PartieNombreOperation $unNombreOperation, PartieTempsImparti $unTempsImparti){
+    public static function creerPartie(PartieId $unPartieId, PartieType $unType, PartieNombreOperation $unNombreOperation){
         
-        $nouvellePartie = new Self($unPartieId, $unType, $unNombreOperation, $unTempsImparti, new DateTimeImmutable());
+        $nouvellePartie = new Partie($unPartieId, $unType, $unNombreOperation);
 
         //creer event
-        $nouvellePartie-> apply(new PartieCreee($nouvellePartie->partieId->value(), 
+        $nouvellePartie-> apply(new PartieCreee($nouvellePartie->partieId, 
                                                 $unType->value(), 
-                                                $unNombreOperation->value(), 
-                                                $unTempsImparti->value(),
-                                                $nouvellePartie->creeeLe->format('d-m-Y')));
+                                                $unNombreOperation->value()));
         
         return $nouvellePartie;
         
@@ -42,23 +38,7 @@ final class Partie extends EventSourcedAggregateRoot
 
 
 
-    public function typePartie(){
-        return $this->typePartie->value();
-    }
-
-    public function nombreOperation(){
-        return $this->nombreOperation->value();
-    }
-
-    public function tempsImparti(){
-        return $this->tempsImparti->value();
-    }
-
-    public function creeeLe(){
-        return $this->creeeLe->format('d-m-Y');
-    }
-
-    public function applyPartieCreee(PartieCreee $event)
+    protected function applyPartieCreee(PartieCreee $event)
     {
         $this->partieId = $event->partieId->value();
 
@@ -67,7 +47,7 @@ final class Partie extends EventSourcedAggregateRoot
 
     public function getAggregateRootId():string
     {
-        return $this->partieId->value();
+        return $this->partieId;
     }
 
    

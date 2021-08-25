@@ -16,13 +16,12 @@ class PartieCreee
 
     private $creeeLe;
 
-   private function __construct(int $partieId ,string $typePartie, int $nombreOperation, $tempsImparti, $creeeLe)
+   private function __construct(string $partieId ,string $typePartie, int $nombreOperation)
     {
         $this->partieId = $partieId;
         $this->typePartie = $typePartie;
         $this->nombreOperation = $nombreOperation;
-        $this->tempsImparti = $tempsImparti;
-        $this->creeeLe = $creeeLe;
+      
     }
 
 }

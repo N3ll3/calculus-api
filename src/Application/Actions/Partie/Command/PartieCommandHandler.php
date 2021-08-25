@@ -3,6 +3,7 @@
 namespace App\Actions\Partie\Command;
 
 use App\Domain\Partie\Partie;
+use App\Domain\Partie\PartieId;
 use Broadway\CommandHandling\SimpleCommandHandler as BroadwayCommandHandler;
 
 class PartieCommandHandler extends BroadwayCommandHandler
@@ -14,9 +15,9 @@ class PartieCommandHandler extends BroadwayCommandHandler
         $this->repository = $repository;
     }
 
-    protected function handleCreerPartieCommand(CreerPartieCommand $command)
+    public function handleCreerPartieCommand(CreerPartieCommand $command)
     {
-        $partie = Partie :: CreerPartie($command->partieId, $command->typePartie, $command->nombreOperation, $command->tempsImparti, $command->creeeLe);
+        $partie = Partie :: CreerPartie($command->partieId, $command->typePartie, $command->nombreOperation);
 
         $this->repository->save($partie);
     }

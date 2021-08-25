@@ -14,4 +14,8 @@ abstract class PartieCommand
     {
         $this->partieId = $partieId;
     }
+
+    public function partieId(){
+        return $this->partieId;
+    }
 }

@@ -4,23 +4,20 @@ namespace App\Domain\Partie;
 
 use Ramsey\Uuid\Uuid;
 
-class partieId
+class PartieId
 {
-    private string $id;
+    private string $partieId;
 
-    public function __construct($id=null)
+    public function __construct(string $partieId)
     {
-        if($id == null) {
-            $this->id = Uuid::uuid4();
-        } else {
-            $this->id = $id;
-        }
-        
-        
+        $this->partieId;
+              
     }
 
-    public function value(){
-        return $this->id;
+    public function __toString()
+    {
+        return $this->partieId;
+        
     }
 
 }

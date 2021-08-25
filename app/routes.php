@@ -1,16 +1,18 @@
 <?php
 declare(strict_types=1);
 
-use App\Actions\Partie\Command\PartieCommandHandler;
-use App\Infrastructure\Partie\Repository\PartieRepository;
+
+use App\Application\Actions\Partie\Controller\PartieController;
+
 use App\Application\Actions\User\ListUsersAction;
 use App\Application\Actions\User\ViewUserAction;
+use Broadway\CommandHandling\SimpleCommandBus;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
-use Broadway\EventStore\EventStore as EventStore;
-use Broadway\EventHandling\EventBus as EventBus;
+
 
 return function (App $app) {
     $app->options('/{routes:.*}', function (Request $request, Response $response) {
@@ -29,15 +31,14 @@ return function (App $app) {
     });
 
 
-    $app->post('/partie', function (Request $request, Response $response){
-        $partie = $request->getParsedBody();
-        // $eventStore = EventStore;
-        $eventBus = new Broadway\EventHandling\SimpleEventBus;
-        $repository = new PartieRepository($eventStore,$eventBus);
-        $partieCommandHandler = new PartieCommandHandler($repository);
+    $app->group('/partie', function (Group $group){
+        $group->post('/create', function(Request $request, Response $response){
+            $commandBus = new SimpleCommandBus();
+            $controller = new PartieController($commandBus);
+            return $controller->createPartieAction($request, $response);
+        });
+       
 
-      
-      return $response->withHeader('Content-Type', 'application/json');
     });
         
 
