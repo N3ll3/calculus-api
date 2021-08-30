@@ -34,7 +34,7 @@ return function (App $app) {
     $app->group('/partie', function (Group $group){
         $group->post('/create', function(Request $request, Response $response){
             $commandBus = new SimpleCommandBus();
-            $controller = new PartieController($commandBus);
+            $controller = new PartieController($commandBus, $this->get(PDO::class));
             return $controller->createPartieAction($request, $response);
         });
        

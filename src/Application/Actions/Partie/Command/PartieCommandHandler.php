@@ -19,7 +19,9 @@ class PartieCommandHandler extends BroadwayCommandHandler
     {
         $partie = Partie :: CreerPartie($command->partieId, $command->typePartie, $command->nombreOperation);
 
-        $this->repository->save($partie);
+        $this->repository->save($partie);// save in event store
+
+        $this->persist($partie); //persiste in db
     }
 
 

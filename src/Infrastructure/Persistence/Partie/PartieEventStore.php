@@ -11,7 +11,7 @@ use Broadway\EventStore\Management\EventStoreManagement;
 use Broadway\EventStore\EventVisitor;
 use Broadway\EventStore\EventStreamNotFoundException;
 
-class PartieEventStore implements EventStore, EventStoreManagement
+class CreerPartieEventStore implements EventStore, EventStoreManagement
 {
     
     private $events = [];
