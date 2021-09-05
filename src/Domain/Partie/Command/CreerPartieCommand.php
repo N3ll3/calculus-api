@@ -1,6 +1,9 @@
 <?php
 
-namespace App\Actions\Partie\Command;
+namespace App\Domain\Partie\Command;
+
+use App\Domain\Partie\PartieId;
+use App\Domain\Partie\PartieType;
 
 class CreerPartieCommand extends PartieCommand 
 {
@@ -10,7 +13,7 @@ class CreerPartieCommand extends PartieCommand
 
 
 
-    private function __construct($partieId ,string $typePartie, int $nombreOperation)
+    private function __construct(PartieId $partieId , PartieType $typePartie, int $nombreOperation)
     {
         parent::__construct($partieId);
 

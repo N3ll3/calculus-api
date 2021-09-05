@@ -14,7 +14,7 @@ final class Partie extends EventSourcedAggregateRoot
 {
 
     
-    private partieId $partieId; // aggregate root id
+    private PartieId $partieId; // aggregate root id
 
     private PartieType $typePartie;
 
@@ -26,22 +26,8 @@ final class Partie extends EventSourcedAggregateRoot
     public static function creerPartie(PartieId $unPartieId, PartieType $unType, PartieNombreOperation $unNombreOperation){
         
         $nouvellePartie = new Partie($unPartieId, $unType, $unNombreOperation);
-
-        //creer event
-        $nouvellePartie-> apply(new PartieCreee($nouvellePartie->partieId, 
-                                                $unType->value(), 
-                                                $unNombreOperation->value()));
-        
         return $nouvellePartie;
         
-    }
-
-
-
-    protected function applyPartieCreee(PartieCreee $event)
-    {
-        $this->partieId = $event->partieId->value();
-
     }
 
 
@@ -50,5 +36,17 @@ final class Partie extends EventSourcedAggregateRoot
         return $this->partieId;
     }
 
+
+    public function partieId(){
+        return $this->partieId;
+    }
+
+    public function typePartie(){
+        return $this->typePartie;
+    }
+
+    public function nombreOperation(){
+        return $this->nombreOperation;
+    }
    
 }

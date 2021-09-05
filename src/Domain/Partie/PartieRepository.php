@@ -2,7 +2,7 @@
 
 namespace App\Domain\Partie;
 
-use Broadway\EventSourcing\EventSourcingRepository as BroadwayEventRepository;
+
 
 interface PartieRepository 
 {

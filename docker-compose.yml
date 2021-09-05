@@ -1,46 +1,35 @@
-version: '3.7'
-
-volumes:
-    logs:
-        driver: local
-          
+version: '3.8'
 services:
-    php:
-        build: './php/'
-        networks:
-        - backend
-        volumes:
-        - ./public_html/:/var/www/html/
-    apache:
-        build: './apache/'
+    php-apache-environment:
+        container_name: php-apache
+        build:
+            context: .
+            dockerfile: .docker/dockerfile
+        image:    
         depends_on:
-        - php
-        - mysql
-        networks:
-        - frontend
-        - backend
-        ports:
-        - "8080:80"
+            - db
         volumes:
-        - ./public_html/:/var/www/html/
-    mysql:
-        image: mysql:5.6.40
-        networks:
-        - backend
+            - ./src:/var/www/html/
+        ports:
+            - 8000:80
+    db:
+        container_name: db
+        image: mysql
+        restart: always
         environment:
-        - MYSQL_ROOT_PASSWORD=rootpassword
+            MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
+            MYSQL_DATABASE: MYSQL_DATABASE
+            MYSQL_USER: MYSQL_USER
+            MYSQL_PASSWORD: MYSQL_PASSWORD
+        ports:
+            - "9906:3306"
 
-    slim:
-        image: php:7-alpine
-        working_dir: /var/www
-        command: php -S 0.0.0.0:8080 -t public
-        environment:
-            docker: "true"
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
         ports:
-            - 8080:8080
-        volumes:
-            - .:/var/www
-            - logs:/var/www/logs
-networks:
-  frontend:
-  backend:
+            - '8080:80'
+        restart: always
+        environment:
+            PMA_HOST: db
+        depends_on:
+            - db        

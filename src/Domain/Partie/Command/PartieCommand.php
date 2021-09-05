@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Actions\Partie\Command;
+namespace App\Domain\Partie\Command;
 
 use Serializable;
 

@@ -8,9 +8,10 @@ class PartieId
 {
     private string $partieId;
 
-    public function __construct(string $partieId)
+    public function __construct()
     {
-        $this->partieId;
+        $uuid = Uuid::uuid4()();
+        $this->partieId = $uuid;
               
     }
 
