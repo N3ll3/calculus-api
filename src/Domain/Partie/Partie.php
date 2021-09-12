@@ -24,6 +24,8 @@ class Partie
     public static function creerPartie(PartieId $unPartieId, PartieType $unType, PartieNombreOperation $unNombreOperation){
         
         $nouvellePartie = new Partie($unPartieId, $unType, $unNombreOperation);
+
+        $nouvellePartie->generateOperations();
         return $nouvellePartie;
         
     }

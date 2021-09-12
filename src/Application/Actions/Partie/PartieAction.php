@@ -4,11 +4,12 @@
 namespace App\Actions\Partie;
 
 use App\Application\Actions\Action;
+use App\Infrastructure\Partie\Repository\PartieRepository;
 
-class PartieAction extends Action
+abstract class PartieAction extends Action
 {
 
-    private $repository;
+    protected $repository;
 
 
     public function __construct(PartieRepository $repository)
