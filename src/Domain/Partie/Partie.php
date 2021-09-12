@@ -3,24 +3,22 @@
 namespace App\Domain\Partie;
 
 
-use Broadway\EventSourcing\EventSourcedAggregateRoot as EventSourcedAggregateRoot;
-
 use DateTimeImmutable;
 
-use App\Domain\Partie\PartieCreee;
 
 
-final class Partie extends EventSourcedAggregateRoot
+class Partie
 {
-
     
-    private PartieId $partieId; // aggregate root id
+    private PartieId $partieId;
 
     private PartieType $typePartie;
 
     private PartieNombreOperation $nombreOperation;
 
     private DateTimeImmutable $creeeLe;
+
+    private Operations $operations;
  
  
     public static function creerPartie(PartieId $unPartieId, PartieType $unType, PartieNombreOperation $unNombreOperation){
@@ -30,12 +28,10 @@ final class Partie extends EventSourcedAggregateRoot
         
     }
 
-
-    public function getAggregateRootId():string
+    public function generateOperation()
     {
-        return $this->partieId;
+        
     }
-
 
     public function partieId(){
         return $this->partieId;
