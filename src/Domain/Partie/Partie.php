@@ -4,7 +4,7 @@ namespace App\Domain\Partie;
 
 
 use DateTimeImmutable;
-
+use App\Domain\Operation\Operation;
 
 
 class Partie
@@ -18,7 +18,7 @@ class Partie
 
     private DateTimeImmutable $creeeLe;
 
-    private Operations $operations;
+    private array $operations;
  
  
     public static function creerPartie(PartieId $unPartieId, PartieType $unType, PartieNombreOperation $unNombreOperation){
@@ -28,9 +28,13 @@ class Partie
         
     }
 
-    public function generateOperation()
+    public function generateOperations()
     {
+        for ($i= 1; $i <= $this->nombreOperation ; $i++) { 
+            $this->operations[]= new Operation($this->typePartie);
+        }
         
+        return $this->operations;
     }
 
     public function partieId(){
