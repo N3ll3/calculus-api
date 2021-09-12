@@ -6,7 +6,7 @@ class Operation
 {
     protected $nbre1;
     protected $nbre2;
-    protected $operateur;
+    protected array $operateur;
     protected $resultat;
 
     public function __construct($typeOperation)
@@ -14,19 +14,33 @@ class Operation
         switch($typeOperation)
         {
             case 'addition' :
-                 $this->operateur = ['+'];
+                 $this->operateur = '+';
                  break;
+
             case 'soustraction' :
-                 $this->operateur = ['-'];
+                 $this->operateur = '-';
                  break;
+
             case 'multiplication' :
-                 $this->operateur = ['*'];
+                 $this->
+                 $this->operateur = '*';
                  break;
             case 'aleatoire' :
-                 $this->operateur = ['+','-','*'];
+                $operateurs = ['+','-','*'];
+                 $this->operateur = $operateurs[random_int(0,2)];
                  break;
         }
+
+        $this->nbre1 = 1 ;
+        $this->nbre2 = 1 ;
+        $this->resultat = $this->nbre1.$this->$operateur[0].$this->$nbre2;
+
     }
-    
+
+    public function getOperation()
+    {
+
+
+    }
 
 }

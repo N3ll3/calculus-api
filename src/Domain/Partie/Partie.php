@@ -32,8 +32,10 @@ class Partie
 
     public function generateOperations()
     {
-        for ($i= 1; $i <= $this->nombreOperation ; $i++) { 
-            $this->operations[]= new Operation($this->typePartie);
+        for ($i= 1; $i <= $this->nombreOperation->value() ; $i++) { 
+           $operation = new Operation($this->typePartie);
+
+           $this->operations[]= $operation;
         }
         
         return $this->operations;
