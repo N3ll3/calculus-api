@@ -34,11 +34,10 @@ class Partie
     {
         for ($i= 1; $i <= $this->nombreOperation->value() ; $i++) { 
            $operation = new Operation($this->typePartie);
-
-           $this->operations[]= $operation;
+           $this->operations[]= $operation->getOperation();
         }
         
-        return $this->operations;
+        return json_encode($this->operations);
     }
 
     public function partieId(){

@@ -47,7 +47,7 @@ class Operation
             'total'=>$this->resultat,
         ];
 
-        return json_encode($operation);
+        return $operation;
 
     }
 
