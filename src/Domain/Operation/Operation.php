@@ -6,7 +6,7 @@ class Operation
 {
     protected $nbre1;
     protected $nbre2;
-    protected array $operateur;
+    protected $operateur;
     protected $resultat;
 
     public function __construct($typeOperation)
@@ -31,9 +31,9 @@ class Operation
                  break;
         }
 
-        $this->nbre1 = 1 ;
-        $this->nbre2 = 1 ;
-        $this->resultat = $this->nbre1.$this->$operateur[0].$this->$nbre2;
+        $this->nbre1 = random_int(0,10) ;
+        $this->nbre2 =  random_int(0,10) ;
+        $this->resultat = calculeResultat($this->nbre1,$this->$operateur, $this->$nbre2);
 
     }
 
@@ -42,5 +42,11 @@ class Operation
 
 
     }
+
+    private function calculeResultat($nbr1,$nbre2, $operateur)
+    {
+        
+        
+    } 
 
 }
