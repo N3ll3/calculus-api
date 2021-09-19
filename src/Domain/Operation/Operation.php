@@ -40,7 +40,14 @@ class Operation
     public function getOperation()
     {
 
-        
+        $operation = [
+            'nbre1'=>$this->nbre1,
+            'operateur'=> $this->operateur,
+            'nbre2'=>$this->nbre2,
+            'total'=>$this->resultat,
+        ];
+
+        return json_encode($operation);
 
     }
 
