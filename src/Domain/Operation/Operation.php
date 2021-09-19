@@ -33,19 +33,35 @@ class Operation
 
         $this->nbre1 = random_int(0,10) ;
         $this->nbre2 =  random_int(0,10) ;
-        $this->resultat = calculeResultat($this->nbre1,$this->$operateur, $this->$nbre2);
+        $this->resultat = calculeResultat($this->nbre1, $this->$nbre2, $this->$operateur);
 
     }
 
     public function getOperation()
     {
 
+        
 
     }
 
     private function calculeResultat($nbr1,$nbre2, $operateur)
     {
+        $resultat = 0;
+        switch ($operateur) {
+            case '+':
+                $resultat = $nbr1 + $nbre2;
+                break;
+
+            case '-':
+                $resultat = $nbr1 - $nbre2;
+                break;    
+            
+            case '*':
+                $resultat = $nbr1 * $nbre2;
+                break;
+        }
         
+        return $resultat;
         
     } 
 
