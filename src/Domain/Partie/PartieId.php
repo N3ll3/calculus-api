@@ -21,4 +21,9 @@ class PartieId
         
     }
 
+    public function getId()
+    {
+        return $this->partieId;
+    }
+
 }

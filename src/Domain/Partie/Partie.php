@@ -19,17 +19,17 @@ class Partie
     private DateTimeImmutable $creeeLe;
 
     private array $operations;
- 
- 
-    public static function creerPartie(PartieId $unPartieId, PartieType $unType, PartieNombreOperation $unNombreOperation){
-        
-        $nouvellePartie = new Partie($unPartieId, $unType, $unNombreOperation);
+    
+    public function __construct(PartieId $partieId, PartieType $type, PartieNombreOperation $nombreOperation, \DateTimeImmutable $dateCreation)
+    {
 
-        $nouvellePartie->generateOperations();
-        return $nouvellePartie;
-        
+        $this->partieId = $partieId;
+        $this->typePartie = $type;
+        $this->nombreOperation = $nombreOperation;
+        $this->creeeLe = $dateCreation;
     }
-
+ 
+   
     public function generateOperations()
     {
         for ($i= 1; $i <= $this->nombreOperation->value() ; $i++) { 

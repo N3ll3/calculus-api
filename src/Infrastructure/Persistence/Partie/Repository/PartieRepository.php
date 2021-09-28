@@ -23,7 +23,7 @@ class  PartieRepository implements PartieRepositoryInterface
             "INSERT INTO partie 
              VALUE(:uuid, :typePartie, :nombreOperation)"
             );
-        $req->execute([':uuid'=>$partie->partieId, ':typePartie'=>$partie->typePartie, ':nombreOperation'=> $partie->nombreOperation]);
+        $req->execute(['uuid'=>$partie->partieId->getId(), 'typePartie'=>$partie->typePartie->value(), 'nombreOperation'=> $partie->nombreOperation->value()]);
 
     }
 

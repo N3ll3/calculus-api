@@ -1,9 +1,6 @@
 <?php
 declare(strict_types=1);
 
-
-use App\Application\Actions\Partie\Controller\PartieController;
-
 use App\Application\Actions\User\ListUsersAction;
 use App\Application\Actions\User\ViewUserAction;
 use App\Actions\Partie\CreerPartieAction;
