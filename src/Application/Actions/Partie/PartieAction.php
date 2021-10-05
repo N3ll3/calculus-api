@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Actions\Partie;
+namespace App\Application\Actions\Partie;
 
 use App\Application\Actions\Action;
-use App\Infrastructure\Partie\Repository\PartieRepository;
+use App\Infrastructure\Persistence\Partie\Repository\PartieRepository;
 
 abstract class PartieAction extends Action
 {

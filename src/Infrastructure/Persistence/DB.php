@@ -23,8 +23,8 @@ class DB
     ];
     $host = 'localhost';
     $dbname = 'calculus';
-    $username = 'nelle';
-    $password = 'password';
+    $username = 'root';
+    $password = 'root';
     $charset = 'utf8mb4';
     $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
     return new PDO($dsn, $username, $password, $options);

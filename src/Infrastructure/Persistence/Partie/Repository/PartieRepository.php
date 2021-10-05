@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Partie\Repository;
+namespace App\Infrastructure\Persistence\Partie\Repository;
 
 use App\Domain\Partie\PartieRepository as PartieRepositoryInterface;
 use App\Infrastructure\Persistence\DB;
