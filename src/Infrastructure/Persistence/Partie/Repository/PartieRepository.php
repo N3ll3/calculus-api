@@ -14,7 +14,7 @@ class  PartieRepository implements PartieRepositoryInterface
 
     public function __construct(DB $connection)
     {      
-        $this->connection = $connection->db;
+        $this->connection = $connection;
 
     }
 

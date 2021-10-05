@@ -34,7 +34,14 @@ return function (App $app) {
         
 
     $app->get('/db-test', function(Request $request, Response $response){
-        $db = $this->get(PDO::class);
+        $host = 'localhost';
+        $dbname = 'calculus';
+        $username = 'root';
+        $password = '';
+        $charset = 'utf8mb4';
+        $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
+        
+        $db = new PDO($dsn, $username, $password);
         $sth = $db->prepare("SELECT * FROM partie");
         $sth->execute();
         $data = $sth->fetchAll(PDO::FETCH_ASSOC);

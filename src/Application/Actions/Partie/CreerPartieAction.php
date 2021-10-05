@@ -15,6 +15,10 @@ class CreerPartieAction extends PartieAction
     {
       $datas = $this->getFormData();
 
+      if (empty($datas)) {
+       return $this->resp
+      }
+
       $partie = new Partie(
               new PartieId(), 
               new PartieType($datas->typePartie), 
