@@ -25,7 +25,7 @@
         "php": "^7.2 || ^8.0",
         "ext-json": "*",
         "broadway/broadway": "^2.4",
-        "monolog/monolog": "^2.3",
+        "monolog/monolog": "^2.6",
         "php-di/php-di": "^6.3",
         "ramsey/uuid": "^4.2",
         "slim/psr7": "^1.4",
